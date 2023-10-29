@@ -41,7 +41,7 @@ class JPEGEncodingDecoding(torch.autograd.Function):
             virtualpath = BytesIO()
             img.save(virtualpath, 'JPEG', quality=quality)
             lst_img.append(_to_tensor(Image.open(virtualpath)))
-        return x.new_tensor(torch.stack(lst_img))
+        return torch.stack(lst_img)
 
     @staticmethod
     def backward(ctx, grad_output):
